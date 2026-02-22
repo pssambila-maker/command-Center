@@ -58,7 +58,12 @@ body {
   color: inherit;
 }
 
-.site-header .logo-icon { font-size: 1.4rem; }
+.site-header .logo-icon {
+  height: 42px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 
 .header-logo-block { display: flex; flex-direction: column; }
 
