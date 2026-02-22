@@ -63,6 +63,7 @@ body {
   width: auto;
   display: block;
   object-fit: contain;
+  mix-blend-mode: lighten;
 }
 
 .header-logo-block { display: flex; flex-direction: column; }
