@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Command Center, Upstate Reporting</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Override body height for full-viewport embed */
+    html, body { height: 100%; overflow: hidden; }
+  </style>
+</head>
+<body class="embed-page">
+
+  <!-- Header (filled dynamically) -->
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">&#9783;</span>
+      <div class="header-logo-block">
+        <span class="logo-text">Command Center</span>
+        <span class="logo-sub" id="header-dept-label">Upstate Reporting</span>
+      </div>
+    </a>
+    <a id="back-link" href="index.html" class="back-btn">&#8592; Back</a>
+  </header>
+
+  <!-- Breadcrumb (filled dynamically) -->
+  <nav class="breadcrumb" id="breadcrumb-nav">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <a id="dept-crumb" href="index.html">Department</a>
+    <span>/</span>
+    <span id="title-crumb">Dashboard</span>
+  </nav>
+
+  <!-- Tableau Embed -->
+  <div class="tableau-embed-wrapper">
+    <iframe
+      id="tableau-frame"
+      class="tableau-iframe"
+      src="about:blank"
+      allowfullscreen
+      title="Tableau Dashboard">
+    </iframe>
+  </div>
+
+  <script>
+    // Read URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const title  = params.get('title') || 'Dashboard';
+    const dept   = params.get('dept')  || '';
+    const src    = params.get('src')   || '';
+
+    // Department → page mapping
+    const deptPages = {
+      'HR':         'hr.html',
+      'Finance':    'finance.html',
+      'Operations': 'operations.html',
+      'Sales':      'sales.html',
+    };
+
+    // Update page title
+    document.title = title + ' — Command Center';
+
+    // Update header subtitle
+    if (dept) {
+      document.getElementById('header-dept-label').textContent = dept + ' Department';
+    }
+
+    // Update back link
+    const backLink = document.getElementById('back-link');
+    if (dept && deptPages[dept]) {
+      backLink.href = deptPages[dept];
+      backLink.textContent = '\u2190 ' + dept + ' Dashboards';
+    }
+
+    // Update breadcrumb
+    const deptCrumb = document.getElementById('dept-crumb');
+    if (dept && deptPages[dept]) {
+      deptCrumb.textContent = dept;
+      deptCrumb.href = deptPages[dept];
+    } else {
+      deptCrumb.style.display = 'none';
+      deptCrumb.nextElementSibling.style.display = 'none';
+    }
+    document.getElementById('title-crumb').textContent = title;
+
+    // Build Tableau embed URL
+    // Appends Tableau embed parameters: hide toolbar chrome, embed mode on
+    if (src) {
+      const separator = src.includes('?') ? '&' : '?';
+      const embedUrl  = src + separator + ':embed=yes&:toolbar=yes&:tabs=no&:showVizHome=no';
+      document.getElementById('tableau-frame').src = embedUrl;
+    } else {
+      // No src provided — show a placeholder message
+      document.getElementById('tableau-frame').srcdoc = `
+        <html><body style="font-family:sans-serif;display:flex;align-items:center;
+          justify-content:center;height:100vh;margin:0;background:#f0f2f5;color:#718096;">
+          <div style="text-align:center;">
+            <div style="font-size:3rem;margin-bottom:1rem;">&#128202;</div>
+            <p style="font-size:1.1rem;font-weight:600;">No dashboard URL configured</p>
+            <p style="margin-top:0.5rem;">Update the <code>src</code> parameter in the dashboard card link.</p>
+          </div>
+        </body></html>`;
+    }
+  </script>
+
+</body>
+</html>

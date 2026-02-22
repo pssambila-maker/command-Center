@@ -1,0 +1,317 @@
+/* =============================================
+   Command Center — Shared Styles
+   Tableau Analytics Portal | upstate.edu
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg:         #f0f2f5;
+  --color-header-bg:  #1e3a5f;
+  --color-header-text:#ffffff;
+  --color-card-bg:    #ffffff;
+  --color-text:       #1a202c;
+  --color-muted:      #718096;
+  --color-border:     #e2e8f0;
+  --color-shadow:     rgba(0,0,0,0.08);
+
+  --dept-hr:          #c0392b;
+  --dept-finance:     #27ae60;
+  --dept-operations:  #2980b9;
+  --dept-sales:       #d35400;
+
+  --radius:           10px;
+  --transition:       0.2s ease;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* Header */
+.site-header {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header .logo-icon { font-size: 1.4rem; }
+
+.header-logo-block { display: flex; flex-direction: column; }
+
+.site-header .logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.site-header .logo-sub {
+  font-size: 0.68rem;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: background var(--transition);
+}
+
+.back-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* Breadcrumb */
+.breadcrumb {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.55rem 2rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.breadcrumb a { color: var(--color-header-bg); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 6px; }
+
+/* Department Banner */
+.dept-banner {
+  padding: 2rem 2rem 1.5rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.dept-banner::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+
+.dept-banner .dept-icon { font-size: 2.4rem; margin-bottom: 0.5rem; display: block; }
+.dept-banner h1 { font-size: 1.8rem; font-weight: 700; }
+.dept-banner p  { opacity: 0.85; font-size: 0.95rem; margin-top: 0.3rem; }
+
+/* Main Content */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Hero */
+.hero { text-align: center; padding: 3rem 1rem 2rem; }
+.hero h1 { font-size: 2.2rem; font-weight: 800; color: var(--color-header-bg); }
+.hero p   { color: var(--color-muted); font-size: 1rem; margin-top: 0.5rem; }
+
+/* Department Grid (Home) */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dept-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px var(--color-shadow);
+  text-decoration: none;
+  color: var(--color-text);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.dept-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+}
+
+.dept-card-header {
+  padding: 1.8rem 1.5rem 1.3rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dept-card-header .icon { font-size: 2rem; }
+.dept-card-header h2   { font-size: 1.3rem; font-weight: 700; }
+
+.dept-card-body { padding: 1rem 1.5rem 1.4rem; flex: 1; }
+.dept-card-body p { color: var(--color-muted); font-size: 0.88rem; line-height: 1.6; }
+
+.dept-card-footer {
+  padding: 0.8rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Department color classes */
+.dept-hr    .dept-card-header { background: var(--dept-hr); }
+.dept-fin   .dept-card-header { background: var(--dept-finance); }
+.dept-ops   .dept-card-header { background: var(--dept-operations); }
+.dept-sales .dept-card-header { background: var(--dept-sales); }
+
+.banner-hr    { background: var(--dept-hr); }
+.banner-fin   { background: var(--dept-finance); }
+.banner-ops   { background: var(--dept-operations); }
+.banner-sales { background: var(--dept-sales); }
+
+/* Dashboard Card Grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.dash-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px var(--color-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.dash-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.dash-card-accent { height: 4px; }
+
+.dash-card-body { padding: 1.2rem 1.3rem 0.8rem; flex: 1; }
+.dash-card-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+.dash-card-body p  { font-size: 0.83rem; color: var(--color-muted); line-height: 1.55; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.tag-hr    { background: #fde8e8; color: var(--dept-hr); }
+.tag-fin   { background: #e6f7ed; color: var(--dept-finance); }
+.tag-ops   { background: #e8f1fb; color: var(--dept-operations); }
+.tag-sales { background: #fef0e6; color: var(--dept-sales); }
+
+.dash-card-footer {
+  padding: 0.9rem 1.3rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 18px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.open-btn:hover { opacity: 0.88; transform: translateX(2px); }
+
+.btn-hr    { background: var(--dept-hr); }
+.btn-fin   { background: var(--dept-finance); }
+.btn-ops   { background: var(--dept-operations); }
+.btn-sales { background: var(--dept-sales); }
+
+/* Embed Page */
+.embed-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.embed-page .site-header { flex-shrink: 0; }
+.embed-page .breadcrumb  { flex-shrink: 0; }
+
+.tableau-embed-wrapper { flex: 1; overflow: hidden; }
+
+.tableau-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Section Label */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .main-content { padding: 1.2rem; }
+  .hero h1 { font-size: 1.6rem; }
+  .dept-grid { grid-template-columns: 1fr; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .site-header { padding: 0 1rem; }
+}
