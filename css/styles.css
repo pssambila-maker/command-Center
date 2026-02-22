@@ -39,7 +39,7 @@ body {
 .site-header {
   background: var(--color-header-bg);
   color: var(--color-header-text);
-  padding: 0 2.5rem;
+  padding: 0 2.5rem 0 0;
   height: 90px;
   display: flex;
   align-items: center;
@@ -53,17 +53,17 @@ body {
 .site-header .logo {
   display: flex;
   align-items: center;
+  align-self: stretch;
   gap: 10px;
   text-decoration: none;
   color: inherit;
 }
 
 .site-header .logo-icon {
-  height: 64px;
+  height: 100%;
   width: auto;
   display: block;
-  object-fit: contain;
-  mix-blend-mode: lighten;
+  object-fit: cover;
 }
 
 .header-logo-block { display: flex; flex-direction: column; }
