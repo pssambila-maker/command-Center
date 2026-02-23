@@ -4,9 +4,23 @@
   "description": "Upstate Reporting — Tableau Navigation Portal",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "prod": "pm2 start ecosystem.config.js",
+    "logs": "pm2 logs command-center",
+    "stop": "pm2 stop command-center",
+    "audit": "npm audit --audit-level=high"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "pm2": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
